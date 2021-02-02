@@ -74,7 +74,7 @@ client.on('emojiCreate', async emoji => {
     let embed = new MessageEmbed()
         .setColor(hex)
         .setTitle('Emote Added!')
-        .setAuthor(auditlogs.entries.first().executor.toString(), auditlogs.entries.first().executor.displayAvatarURL())
+        .setAuthor(auditlogs.entries.first().executor.displayName, auditlogs.entries.first().executor.displayAvatarURL())
         .setDescription(`**Emoji name:** ${emoji.name}`)
         .setThumbnail(emoji.url)
         .setTimestamp()
@@ -91,7 +91,7 @@ client.on('emojiDelete', async emoji => {
     let embed = new MessageEmbed()
         .setColor(hex)
         .setTitle('Emote Removed!')
-        .setAuthor(auditlogs.entries.first().executor.toString(), auditlogs.entries.first().executor.displayAvatarURL())
+        .setAuthor(auditlogs.entries.first().executor.displayName, auditlogs.entries.first().executor.displayAvatarURL())
         .setDescription(`**Emoji name:** ${emoji.name}`)
         .setTimestamp()
     updates.send(embed);
@@ -99,11 +99,11 @@ client.on('emojiDelete', async emoji => {
 
 client.on('emojiUpdate', async (oldEmoji, newEmoji) => {
     if (oldEmoji === newEmoji) return;
-    const auditlogs = await emoji.guild.fetchAuditLogs({
+    const auditlogs = await oldEmoji.guild.fetchAuditLogs({
         type: "EMOJI_UPDATE",
     });
 
-    let updates = emoji.guild.channels.cache.get(announcementChannel);
+    let updates = oldEmoji.guild.channels.cache.get(announcementChannel);
 
     let embed = new MessageEmbed()
         .setColor(hex)
