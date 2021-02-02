@@ -54,8 +54,8 @@ client.on('message', async message => {
     }
 
     if(message.channel.id === hugChainChannel){
-        if(message.content != '<:hugs:805110056399274065>'){
-            message.delete('Non hug emote in hug chain channel');
+        if(message.content !== '<:hugs:805110056399274065>'){
+            message.delete();
             message.author.send(`You can only send <:hugs:805110056399274065> in <#${message.channel.id}>`);
             return;
         } else {
