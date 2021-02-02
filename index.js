@@ -59,7 +59,8 @@ client.on('message', async message => {
             message.author.send(`You can only send <:hugs:805110056399274065> in <#${message.channel.id}>`);
             return;
         } else {
-            message.channel.setTopic(message.channel.topic + 1);
+            if(isNaN(message.channel.topic)) message.channel.setTopic('0');
+            else message.channel.setTopic(message.channel.topic + 1);
         };
     };
 });
