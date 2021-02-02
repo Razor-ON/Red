@@ -111,7 +111,7 @@ client.on('emojiUpdate', async (oldEmoji, newEmoji) => {
         .setTitle('Emote Updated!')
         .setAuthor(auditlogs.entries.first().executor.tag, auditlogs.entries.first().executor.displayAvatarURL())
         .setDescription(`Emoji name changed from **${oldEmoji.name}** to **${newEmoji.name}**`)
-        .setThumbnail(emoji.url)
+        .setThumbnail(newEmoji.url)
         .setTimestamp()
     updates.send(embed);
 })
