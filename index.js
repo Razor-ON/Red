@@ -8,6 +8,7 @@ client.on('ready', () => {
 let hex = '#7ee268';
 let announcementChannel = '806216830787911770';
 let hugChainChannel = '806239006752374805';
+let emojisChannel = '806216806326206476';
 
 client.on('message', async message => {
     if(message.author.bot) return;
@@ -83,6 +84,12 @@ client.on('emojiCreate', async emoji => {
         .setThumbnail(emoji.url)
         .setTimestamp()
     updates.send(embed);
+    
+    let emojisChannelEmbed = new MessageEmbed()
+                .setThumbnail(emoji.url)
+                .setTitle(emoji.name)
+                .setColor(hex)
+            emoji.guild.channels.cache.get(emojisChannel).send(emojisChannelEmbed);
 })
 
 client.on('emojiDelete', async emoji => {
