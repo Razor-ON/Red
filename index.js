@@ -63,7 +63,7 @@ client.on('message', async message => {
             if(isNaN(message.channel.topic)) {
                 message.channel.setTopic('0')
             } else {
-                message.channel.setTopic(message.channel.topic + 1);
+                message.channel.setTopic(parseInt(message.channel.topic) + 1);
             }
         };
     };
